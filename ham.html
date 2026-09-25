@@ -1,0 +1,1363 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Chiang Mai Trip 💕</title>
+
+<style>
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, "Noto Sans Thai", sans-serif;
+    background: #f6f1ea;
+    color: #3f3a35;
+}
+
+.container {
+    max-width: 850px;
+    margin: auto;
+    padding: 20px;
+}
+
+/* Header */
+.header {
+    background: linear-gradient(135deg, #dce9df, #f4dddd);
+    border-radius: 25px;
+    padding: 25px;
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+.header h1 {
+    margin: 0;
+    font-size: 30px;
+}
+
+.header p {
+    color: #766f68;
+}
+
+/* Navigation */
+.nav {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+
+.nav button {
+    flex: 1;
+    padding: 13px;
+    border: none;
+    border-radius: 15px;
+    background: #ded8d0;
+    cursor: pointer;
+    font-size: 15px;
+}
+
+.nav button.active {
+    background: #718b78;
+    color: white;
+}
+
+/* Card */
+.card {
+    background: white;
+    border-radius: 20px;
+    padding: 20px;
+    margin-bottom: 15px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+}
+
+.card h2 {
+    margin-top: 0;
+}
+
+/* Inputs */
+input,
+textarea,
+select {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ddd4ca;
+    border-radius: 12px;
+    margin-bottom: 10px;
+    font-size: 15px;
+    background: white;
+}
+
+textarea {
+    min-height: 100px;
+    resize: vertical;
+}
+
+/* Buttons */
+button {
+    border: none;
+    border-radius: 12px;
+    padding: 10px 15px;
+    background: #718b78;
+    color: white;
+    cursor: pointer;
+}
+
+button:hover {
+    opacity: 0.85;
+}
+
+/* Grid */
+.grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+}
+
+/* Items */
+.item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 0;
+    border-bottom: 1px solid #eee6dd;
+}
+
+.item:last-child {
+    border-bottom: none;
+}
+
+.item input[type="checkbox"] {
+    width: 20px;
+    height: 20px;
+    margin: 0;
+}
+
+.item-text {
+    flex: 1;
+}
+
+.completed {
+    text-decoration: line-through;
+    color: #aaa;
+}
+
+/* Add area */
+.add-box {
+    display: flex;
+    gap: 8px;
+}
+
+.add-box input {
+    margin: 0;
+}
+
+/* Progress */
+.progress {
+    width: 100%;
+    height: 13px;
+    background: #eee8e1;
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+.progress-bar {
+    height: 100%;
+    width: 0%;
+    background: #718b78;
+    transition: 0.3s;
+}
+
+.progress-text {
+    margin-top: 8px;
+    color: #777;
+    font-size: 14px;
+}
+
+/* Money */
+.money {
+    font-size: 28px;
+    font-weight: bold;
+    margin-bottom: 12px;
+}
+
+/* Photos */
+.photo-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+    margin-top: 15px;
+}
+
+.photo-box {
+    position: relative;
+}
+
+.photo-box img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    border-radius: 15px;
+}
+
+.photo-box button {
+    position: absolute;
+    bottom: 8px;
+    right: 8px;
+    background: #a96f6f;
+}
+
+/* Hide pages */
+.page {
+    display: none;
+}
+
+.page.active {
+    display: block;
+}
+
+/* Mobile */
+@media(max-width:600px) {
+
+    .grid {
+        grid-template-columns: 1fr;
+    }
+
+    .header h1 {
+        font-size: 25px;
+    }
+
+    .container {
+        padding: 12px;
+    }
+
+    .photo-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+</style>
+</head>
+
+
+<body>
+
+<div class="container">
+
+<!-- HEADER -->
+
+<div class="header">
+
+    <h1>🌿 Our Chiang Mai Trip 💕</h1>
+
+    <p>
+        ทริปเล็ก ๆ ของเราสองคน
+    </p>
+
+    <div id="countdown">
+        🗓️ ใส่วันเดินทางก่อน
+    </div>
+
+</div>
+
+
+<!-- NAVIGATION -->
+
+<div class="nav">
+
+    <button
+        id="page1Button"
+        class="active"
+        onclick="openPage('page1')">
+
+        🏔️ ข้อมูลทริป
+
+    </button>
+
+
+    <button
+        id="page2Button"
+        onclick="openPage('page2')">
+
+        📋 เช็กแพลน & รูป
+
+    </button>
+
+</div>
+
+
+
+<!-- ================================================= -->
+<!-- PAGE 1 -->
+<!-- ================================================= -->
+
+<div id="page1" class="page active">
+
+
+    <!-- Trip Information -->
+
+    <div class="card">
+
+        <h2>📅 วันเดินทาง</h2>
+
+        <label>วันไป</label>
+
+        <input
+            type="date"
+            id="startDate">
+
+        <label>วันกลับ</label>
+
+        <input
+            type="date"
+            id="endDate">
+
+    </div>
+
+
+
+    <!-- Meeting Time -->
+
+    <div class="card">
+
+        <h2>🕐 เวลานัด</h2>
+
+        <div id="meetingList"></div>
+
+        <div class="add-box">
+
+            <input
+                id="meetingInput"
+                placeholder="เช่น 08:00 นัดเจอกันที่สถานี">
+
+            <button onclick="addItem('meeting')">
+                เพิ่ม
+            </button>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- Budget -->
+
+    <div class="card">
+
+        <h2>💰 งบทริป</h2>
+
+        <input
+            type="number"
+            id="budget"
+            placeholder="งบทั้งหมด เช่น 5000">
+
+        <input
+            type="number"
+            id="moneySaved"
+            placeholder="เงินที่มีตอนนี้">
+
+        <div
+            class="money"
+            id="moneyText">
+
+            ฿0 / ฿0
+
+        </div>
+
+        <div class="progress">
+
+            <div
+                id="moneyBar"
+                class="progress-bar">
+            </div>
+
+        </div>
+
+        <div
+            id="moneyPercent"
+            class="progress-text">
+
+            0%
+
+        </div>
+
+    </div>
+
+
+
+    <!-- Transportation -->
+
+    <div class="card">
+
+        <h2>🚗 การเดินทาง</h2>
+
+        <div id="transportList"></div>
+
+        <div class="add-box">
+
+            <input
+                id="transportInput"
+                placeholder="เช่น รถไฟ กรุงเทพ → เชียงใหม่">
+
+            <button onclick="addItem('transport')">
+                เพิ่ม
+            </button>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- Places -->
+
+    <div class="card">
+
+        <h2>📍 สถานที่เที่ยว</h2>
+
+        <div id="placeList"></div>
+
+        <div class="add-box">
+
+            <input
+                id="placeInput"
+                placeholder="เช่น ดอยสุเทพ">
+
+            <button onclick="addItem('place')">
+                เพิ่ม
+            </button>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- Activities -->
+
+    <div class="card">
+
+        <h2>🎒 กิจกรรม</h2>
+
+        <div id="activityList"></div>
+
+        <div class="add-box">
+
+            <input
+                id="activityInput"
+                placeholder="เช่น เดินเล่นนิมมาน">
+
+            <button onclick="addItem('activity')">
+                เพิ่ม
+            </button>
+
+        </div>
+
+    </div>
+
+
+</div>
+
+
+
+<!-- ================================================= -->
+<!-- PAGE 2 -->
+<!-- ================================================= -->
+
+<div id="page2" class="page">
+
+
+    <!-- Progress -->
+
+    <div class="card">
+
+        <h2>📋 เช็กแพลนของเรา</h2>
+
+        <div
+            class="money"
+            id="planProgressText">
+
+            0 / 0
+
+        </div>
+
+        <div class="progress">
+
+            <div
+                id="planProgressBar"
+                class="progress-bar">
+            </div>
+
+        </div>
+
+        <div
+            id="planPercent"
+            class="progress-text">
+
+            ยังไม่มีแพลน
+
+        </div>
+
+    </div>
+
+
+
+    <!-- Check Plan -->
+
+    <div class="card">
+
+        <h2>✅ สิ่งที่เราทำ</h2>
+
+        <div id="checkList"></div>
+
+    </div>
+
+
+
+    <!-- Photos -->
+
+    <div class="card">
+
+        <h2>📸 รูปที่เราถ่าย</h2>
+
+        <p style="color:#888">
+            เลือกรูปจากเครื่องของนาย
+        </p>
+
+        <input
+            type="file"
+            id="photoInput"
+            accept="image/*"
+            multiple>
+
+        <div
+            id="photoGallery"
+            class="photo-grid">
+
+        </div>
+
+    </div>
+
+
+
+    <!-- Memory -->
+
+    <div class="card">
+
+        <h2>💌 บันทึกความทรงจำ</h2>
+
+        <textarea
+            id="memory"
+            placeholder="วันนี้เราไปไหนมาบ้าง...">
+
+        </textarea>
+
+    </div>
+
+
+</div>
+
+
+</div>
+
+
+
+<script>
+
+/* ================================================= */
+/* DATA */
+/* ================================================= */
+
+let data = JSON.parse(
+    localStorage.getItem("chiangMaiTrip")
+) || {
+
+    startDate: "",
+
+    endDate: "",
+
+    budget: 0,
+
+    moneySaved: 0,
+
+    meeting: [],
+
+    transport: [],
+
+    place: [],
+
+    activity: [],
+
+    photos: [],
+
+    memory: ""
+
+};
+
+
+
+/* ================================================= */
+/* PAGE SWITCH */
+/* ================================================= */
+
+function openPage(page) {
+
+    document
+        .querySelectorAll(".page")
+        .forEach(p => {
+
+            p.classList.remove("active");
+
+        });
+
+
+    document
+        .getElementById(page)
+        .classList.add("active");
+
+
+    document
+        .querySelectorAll(".nav button")
+        .forEach(b => {
+
+            b.classList.remove("active");
+
+        });
+
+
+    if (page === "page1") {
+
+        document
+            .getElementById("page1Button")
+            .classList.add("active");
+
+    }
+
+    else {
+
+        document
+            .getElementById("page2Button")
+            .classList.add("active");
+
+    }
+
+
+    renderAll();
+
+}
+
+
+
+/* ================================================= */
+/* SAVE */
+/* ================================================= */
+
+function save() {
+
+    localStorage.setItem(
+        "chiangMaiTrip",
+        JSON.stringify(data)
+    );
+
+}
+
+
+
+/* ================================================= */
+/* ADD ITEM */
+/* ================================================= */
+
+function addItem(type) {
+
+    let input;
+
+    if (type === "meeting")
+        input = document.getElementById("meetingInput");
+
+    if (type === "transport")
+        input = document.getElementById("transportInput");
+
+    if (type === "place")
+        input = document.getElementById("placeInput");
+
+    if (type === "activity")
+        input = document.getElementById("activityInput");
+
+
+    let text = input.value.trim();
+
+
+    if (text === "")
+        return;
+
+
+    data[type].push({
+
+        text: text,
+
+        done: false
+
+    });
+
+
+    input.value = "";
+
+    save();
+
+    renderAll();
+
+}
+
+
+
+/* ================================================= */
+/* CHECK ITEM */
+/* ================================================= */
+
+function toggleItem(type, index) {
+
+    data[type][index].done =
+        !data[type][index].done;
+
+    save();
+
+    renderAll();
+
+}
+
+
+
+/* ================================================= */
+/* DELETE ITEM */
+/* ================================================= */
+
+function deleteItem(type, index) {
+
+    data[type].splice(index, 1);
+
+    save();
+
+    renderAll();
+
+}
+
+
+
+/* ================================================= */
+/* RENDER LIST */
+/* ================================================= */
+
+function renderList(type, elementId) {
+
+    let container =
+        document.getElementById(elementId);
+
+
+    container.innerHTML = "";
+
+
+    data[type].forEach((item, index) => {
+
+        let div =
+            document.createElement("div");
+
+        div.className = "item";
+
+
+        div.innerHTML = `
+
+            <input
+                type="checkbox"
+                ${item.done ? "checked" : ""}
+                onchange="
+                    toggleItem('${type}', ${index})
+                "
+            >
+
+            <div
+                class="item-text
+                ${item.done ? "completed" : ""}">
+
+                ${escapeHtml(item.text)}
+
+            </div>
+
+            <button
+                onclick="
+                    deleteItem('${type}', ${index})
+                ">
+
+                ลบ
+
+            </button>
+
+        `;
+
+
+        container.appendChild(div);
+
+    });
+
+}
+
+
+
+/* ================================================= */
+/* ALL CHECK LIST */
+/* ================================================= */
+
+function renderCheckList() {
+
+    let container =
+        document.getElementById("checkList");
+
+
+    container.innerHTML = "";
+
+
+    let all = [];
+
+
+    data.meeting.forEach((x, i) => {
+
+        all.push({
+            ...x,
+            type: "meeting",
+            index: i,
+            category: "🕐 เวลานัด"
+        });
+
+    });
+
+
+    data.transport.forEach((x, i) => {
+
+        all.push({
+            ...x,
+            type: "transport",
+            index: i,
+            category: "🚗 การเดินทาง"
+        });
+
+    });
+
+
+    data.place.forEach((x, i) => {
+
+        all.push({
+            ...x,
+            type: "place",
+            index: i,
+            category: "📍 สถานที่"
+        });
+
+    });
+
+
+    data.activity.forEach((x, i) => {
+
+        all.push({
+            ...x,
+            type: "activity",
+            index: i,
+            category: "🎒 กิจกรรม"
+        });
+
+    });
+
+
+    if (all.length === 0) {
+
+        container.innerHTML =
+            "<p style='color:#999'>ยังไม่มีแพลน</p>";
+
+    }
+
+
+    all.forEach(item => {
+
+        let div =
+            document.createElement("div");
+
+        div.className = "item";
+
+
+        div.innerHTML = `
+
+            <input
+                type="checkbox"
+                ${item.done ? "checked" : ""}
+                onchange="
+                    toggleItem(
+                        '${item.type}',
+                        ${item.index}
+                    )
+                "
+            >
+
+            <div
+                class="
+                    item-text
+                    ${item.done ? "completed" : ""}
+                ">
+
+                <small style="color:#999">
+                    ${item.category}
+                </small>
+
+                <br>
+
+                ${escapeHtml(item.text)}
+
+            </div>
+
+        `;
+
+
+        container.appendChild(div);
+
+    });
+
+
+    let total = all.length;
+
+    let completed =
+        all.filter(x => x.done).length;
+
+
+    let percent =
+        total === 0
+        ? 0
+        : Math.round(
+            completed / total * 100
+        );
+
+
+    document
+        .getElementById("planProgressText")
+        .innerText =
+        `${completed} / ${total}`;
+
+
+    document
+        .getElementById("planProgressBar")
+        .style.width =
+        percent + "%";
+
+
+    document
+        .getElementById("planPercent")
+        .innerText =
+        total === 0
+        ? "ยังไม่มีแพลน"
+        : percent + "% ทำแล้ว";
+
+}
+
+
+
+/* ================================================= */
+/* MONEY */
+/* ================================================= */
+
+function updateMoney() {
+
+    let budget =
+        Number(data.budget) || 0;
+
+    let saved =
+        Number(data.moneySaved) || 0;
+
+
+    document
+        .getElementById("moneyText")
+        .innerText =
+        `฿${saved.toLocaleString()}
+        / ฿${budget.toLocaleString()}`;
+
+
+    let percent =
+        budget === 0
+        ? 0
+        : Math.min(
+            100,
+            Math.round(
+                saved / budget * 100
+            )
+        );
+
+
+    document
+        .getElementById("moneyBar")
+        .style.width =
+        percent + "%";
+
+
+    document
+        .getElementById("moneyPercent")
+        .innerText =
+        percent + "%";
+}
+
+
+
+/* ================================================= */
+/* PHOTOS */
+/* ================================================= */
+
+document
+    .getElementById("photoInput")
+    .addEventListener(
+        "change",
+        function(event) {
+
+            let files =
+                event.target.files;
+
+
+            for (let file of files) {
+
+                let reader =
+                    new FileReader();
+
+
+                reader.onload = function(e) {
+
+                    data.photos.push(
+                        e.target.result
+                    );
+
+                    save();
+
+                    renderPhotos();
+
+                };
+
+
+                reader.readAsDataURL(file);
+
+            }
+
+
+            event.target.value = "";
+
+        }
+    );
+
+
+
+function renderPhotos() {
+
+    let gallery =
+        document.getElementById(
+            "photoGallery"
+        );
+
+
+    gallery.innerHTML = "";
+
+
+    data.photos.forEach(
+        (photo, index) => {
+
+            let div =
+                document.createElement("div");
+
+            div.className =
+                "photo-box";
+
+
+            div.innerHTML = `
+
+                <img
+                    src="${photo}"
+                >
+
+                <button
+                    onclick="
+                        deletePhoto(${index})
+                    ">
+
+                    ลบ
+
+                </button>
+
+            `;
+
+
+            gallery.appendChild(div);
+
+        }
+    );
+
+}
+
+
+
+function deletePhoto(index) {
+
+    data.photos.splice(index, 1);
+
+    save();
+
+    renderPhotos();
+
+}
+
+
+
+/* ================================================= */
+/* MEMORY */
+/* ================================================= */
+
+document
+    .getElementById("memory")
+    .addEventListener(
+        "input",
+        function() {
+
+            data.memory =
+                this.value;
+
+            save();
+
+        }
+    );
+
+
+
+/* ================================================= */
+/* DATE */
+/* ================================================= */
+
+document
+    .getElementById("startDate")
+    .addEventListener(
+        "change",
+        function() {
+
+            data.startDate =
+                this.value;
+
+            save();
+
+            countdown();
+
+        }
+    );
+
+
+document
+    .getElementById("endDate")
+    .addEventListener(
+        "change",
+        function() {
+
+            data.endDate =
+                this.value;
+
+            save();
+
+        }
+    );
+
+
+
+/* ================================================= */
+/* MONEY INPUT */
+/* ================================================= */
+
+document
+    .getElementById("budget")
+    .addEventListener(
+        "input",
+        function() {
+
+            data.budget =
+                this.value;
+
+            save();
+
+            updateMoney();
+
+        }
+    );
+
+
+document
+    .getElementById("moneySaved")
+    .addEventListener(
+        "input",
+        function() {
+
+            data.moneySaved =
+                this.value;
+
+            save();
+
+            updateMoney();
+
+        }
+    );
+
+
+
+/* ================================================= */
+/* COUNTDOWN */
+/* ================================================= */
+
+function countdown() {
+
+    let element =
+        document.getElementById(
+            "countdown"
+        );
+
+
+    if (!data.startDate) {
+
+        element.innerText =
+            "🗓️ ใส่วันเดินทาง";
+
+        return;
+
+    }
+
+
+    let target =
+        new Date(
+            data.startDate +
+            "T00:00:00"
+        );
+
+
+    let now =
+        new Date();
+
+
+    let difference =
+        target - now;
+
+
+    if (difference <= 0) {
+
+        element.innerText =
+            "🎉 ถึงวันเที่ยวแล้ว!";
+
+        return;
+
+    }
+
+
+    let days =
+        Math.floor(
+            difference /
+            (1000 * 60 * 60 * 24)
+        );
+
+
+    element.innerText =
+        `เหลืออีก ${days} วัน 💕`;
+
+}
+
+
+
+/* ================================================= */
+/* ESCAPE HTML */
+/* ================================================= */
+
+function escapeHtml(text) {
+
+    let div =
+        document.createElement("div");
+
+    div.textContent = text;
+
+    return div.innerHTML;
+
+}
+
+
+
+/* ================================================= */
+/* RENDER EVERYTHING */
+/* ================================================= */
+
+function renderAll() {
+
+    document
+        .getElementById("startDate")
+        .value =
+        data.startDate;
+
+
+    document
+        .getElementById("endDate")
+        .value =
+        data.endDate;
+
+
+    document
+        .getElementById("budget")
+        .value =
+        data.budget || "";
+
+
+    document
+        .getElementById("moneySaved")
+        .value =
+        data.moneySaved || "";
+
+
+    document
+        .getElementById("memory")
+        .value =
+        data.memory || "";
+
+
+    renderList(
+        "meeting",
+        "meetingList"
+    );
+
+
+    renderList(
+        "transport",
+        "transportList"
+    );
+
+
+    renderList(
+        "place",
+        "placeList"
+    );
+
+
+    renderList(
+        "activity",
+        "activityList"
+    );
+
+
+    renderCheckList();
+
+    renderPhotos();
+
+    updateMoney();
+
+    countdown();
+
+}
+
+
+
+/* START */
+
+renderAll();
+
+</script>
+
+</body>
+</html>
